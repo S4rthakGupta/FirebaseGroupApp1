@@ -21,12 +21,17 @@
 
     <Button
         android:id="@+id/splashBtn"
-        android:layout_width="263dp"
-        android:layout_height="58dp"
+        android:layout_width="196dp"
+        android:layout_height="53dp"
+        android:backgroundTint="#000000"
         android:text="Order Now"
+        android:textColorLink="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.716" />
+        app:layout_constraintVertical_bias="0.722" />
 </androidx.constraintlayout.widget.ConstraintLayout>
