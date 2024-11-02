@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
@@ -12,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="349dp"
         android:layout_height="374dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="108dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,5 +28,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.741" />
+        app:layout_constraintVertical_bias="0.716" />
 </androidx.constraintlayout.widget.ConstraintLayout>
