@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.firebasegroupapp1" />
-                  <option name="mobileSdkAppId" value="1:1035608780513:android:93fd67a27b80f33eda51a0" />
-                  <option name="projectId" value="fir-groupapp1-f4e2f" />
-                  <option name="projectNumber" value="1035608780513" />
+                  <option name="mobileSdkAppId" value="1:248810056050:android:27f9fe70a6e81ed3fd15eb" />
+                  <option name="projectId" value="fir-groupapp1-2577c" />
+                  <option name="projectNumber" value="248810056050" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
