@@ -1,28 +1,31 @@
-package com.example.firebasegroupapp1
-
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import com.example.firebasegroupapp1.databinding.ActivityMainBinding
+import com.example.firebasegroupapp1.DetailActivity
+import com.example.firebasegroupapp1.DishActivity
+import com.example.firebasegroupapp1.R
+
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main) // Use a simple splash screen layout with your logo
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        // Delay for the splash screen
+        Handler(Looper.getMainLooper()).postDelayed({
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            if (currentUser == null) {
+                // If no user is signed in, go to SignUpActivity
+                startActivity(Intent(this, SignUpActivity::class.java))
+            } else {
+                // If user is signed in, go to HomeActivity or main content
+                startActivity(Intent(this, DishActivity::class.java))
+            }
+            finish() // Close the splash screen
+        }, 2000) // 2-second delay
     }
-
-
 }

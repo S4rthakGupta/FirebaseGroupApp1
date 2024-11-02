@@ -30,8 +30,8 @@ class DishAdapter(options: FirebaseRecyclerOptions<Dish>) :
     }
     class MyViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.activity_product_list, parent, false)) {
-        val productName: TextView = itemView.findViewById(R.id.productName);
-        val productPrice: TextView = itemView.findViewById(R.id.productPrice);
+        val productName: TextView = itemView.findViewById(R.id.dishName);
+        val productPrice: TextView = itemView.findViewById(R.id.dishPrice);
         val dishImg: ImageView = itemView.findViewById<ImageView>(R.id.dishImg);
 
     }
