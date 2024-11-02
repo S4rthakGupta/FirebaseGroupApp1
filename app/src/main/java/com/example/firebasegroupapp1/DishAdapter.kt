@@ -24,15 +24,15 @@ class DishAdapter(options: FirebaseRecyclerOptions<Dish>) :
         val theImage : String = model.photo;
 
         var storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(theImage)
-        Glide.with(holder.imgPhoto.context)
+        Glide.with(holder.dishImg.context)
             .load(storageReference)
-            .into(holder.imgPhoto)
+            .into(holder.dishImg)
     }
     class MyViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.activity_product, parent, false)) {
-        val productName: TextView = itemView.findViewById(R.id.);
-        val productPrice: TextView = itemView.findViewById(R.id.dish);
-        val imgPhoto: ImageView = itemView.findViewById<ImageView>(R.id.imgPhoto);
+        RecyclerView.ViewHolder(inflater.inflate(R.layout.activity_product_list, parent, false)) {
+        val productName: TextView = itemView.findViewById(R.id.productName);
+        val productPrice: TextView = itemView.findViewById(R.id.productPrice);
+        val dishImg: ImageView = itemView.findViewById<ImageView>(R.id.dishImg);
 
     }
 
