@@ -24,7 +24,7 @@
         android:layout_width="196dp"
         android:layout_height="53dp"
         android:backgroundTint="#000000"
-        android:text="Login"
+        android:text="Order Now"
         android:textColorLink="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
