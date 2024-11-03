@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.firebasegroupapp1.DetailActivity
 import com.example.firebasegroupapp1.DishActivity
 import com.example.firebasegroupapp1.R
+import com.example.firebasegroupapp1.SignUpActivity
 
 import com.google.firebase.auth.FirebaseAuth
 
