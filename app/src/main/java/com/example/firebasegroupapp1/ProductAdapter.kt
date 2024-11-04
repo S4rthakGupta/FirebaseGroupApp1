@@ -2,9 +2,11 @@ package com.example.firebasegroupapp1
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -35,15 +37,16 @@ class ProductAdapter(options: FirebaseRecyclerOptions<Product>) :
                 .load(model.photo)
                 .into(holder.dishImg)
 
-        // Set the onClickListener to navigate to ProductDetailsActivity
-        holder.RecyclerView.setOnClickListener {
+
+
+        // Set the onClickListener to navigate to DetailsActivity
+        holder.cardV.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, DetailActivity::class.java)
 
-            // Pass product details to the ProductDetailsActivity
-            intent.putExtra("productName", model.name)
-            intent.putExtra("productPrice", model.price)
-            intent.putExtra("productImage", model.photo)
+            intent.putExtra("DishName", model.name)
+            intent.putExtra("Price", model.price)
+            intent.putExtra("DishImage", model.photo)
 
             context.startActivity(intent)
         }
@@ -53,9 +56,11 @@ class ProductAdapter(options: FirebaseRecyclerOptions<Product>) :
         val productName: TextView = itemView.findViewById(R.id.dishName);
         val productPrice: TextView = itemView.findViewById(R.id.dishPrice);
         val dishImg: ImageView = itemView.findViewById<ImageView>(R.id.dishImg);
-
+        var cardV : CardView = itemView.findViewById<View>(R.id.cardV) as CardView
     }
 
 }
+
+
 
 
