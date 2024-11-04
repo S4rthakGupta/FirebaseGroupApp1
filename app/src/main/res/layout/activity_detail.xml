@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".DetailActivity">
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:padding="16dp">
 
+<ImageView
+    android:id="@+id/imgDish"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:contentDescription="Product Image"
+    android:layout_gravity="center" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <TextView
+        android:id="@+id/txtDishName"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Dish"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtPrice"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Price: "
+        android:textSize="20sp"/>
+
+<Button
+    android:id="@+id/btnBuyNow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Buy Now"
+    android:backgroundTint="#F7360D"
+    android:layout_marginTop="16dp" />
+
+</LinearLayout>
