@@ -7,6 +7,12 @@ import android.widget.Button
 
 import androidx.appcompat.app.AppCompatActivity
 
+<<<<<<< Updated upstream
+=======
+
+
+
+>>>>>>> Stashed changes
 import com.example.firebasegroupapp1.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
