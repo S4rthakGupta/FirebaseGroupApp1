@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val btnNext: Button = findViewById(R.id.splashBtn)
         btnNext.setOnClickListener {
 
-          FirebaseAuth.getInstance().signOut()
+//          FirebaseAuth.getInstance().signOut()
             val i = Intent(
                 this,
                 ProductActivity::class.java
