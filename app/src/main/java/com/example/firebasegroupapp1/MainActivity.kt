@@ -1,17 +1,11 @@
 package com.example.firebasegroupapp1
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firebasegroupapp1.DetailActivity
-import com.example.firebasegroupapp1.DishActivity
-import com.example.firebasegroupapp1.R
-import com.example.firebasegroupapp1.SignUpActivity
-
 import com.example.firebasegroupapp1.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -37,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val btnNext: Button = findViewById(R.id.splashBtn)
         btnNext.setOnClickListener {
 
-//            FirebaseAuth.getInstance().signOut()
+            FirebaseAuth.getInstance().signOut()
             val i = Intent(
                 this,
                 DishActivity::class.java
