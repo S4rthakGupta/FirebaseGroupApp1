@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.firebasegroupapp1.DetailActivity
 import com.example.firebasegroupapp1.DishActivity
 import com.example.firebasegroupapp1.R
-import com.example.firebasegroupapp1.SignUpActivity
+//import com.example.firebasegroupapp1.SignUpActivity
 
 import com.example.firebasegroupapp1.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
