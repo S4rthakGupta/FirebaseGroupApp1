@@ -45,7 +45,7 @@ class ProductAdapter(options: FirebaseRecyclerOptions<Product>) :
             val intent = Intent(context, DetailActivity::class.java)
 
             intent.putExtra("DishName", model.name)
-            intent.putExtra("Price", model.price)
+            intent.putExtra("Price", model.price.toString())
             intent.putExtra("DishImage", model.photo)
 
             context.startActivity(intent)

@@ -17,7 +17,7 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityDetailBinding
-    private var Price: String? = null
+    private var Price :Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +26,11 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val DishName = intent.getStringExtra("DishName")
-        val Price = intent.getStringExtra("Price")
+        Price = intent.getStringExtra("Price")?.toDouble() ?: 0.0
         val DishImage = intent.getStringExtra("DishImage")
 
         findViewById<TextView>(R.id.txtDishName).text = DishName
-        findViewById<TextView>(R.id.txtPrice).text = Price.toString()
+        findViewById<TextView>(R.id.txtPrice).text = "Price: $$Price"
         val imgDish = findViewById<ImageView>(R.id.imgDish)
 
         if (DishImage != null) {
