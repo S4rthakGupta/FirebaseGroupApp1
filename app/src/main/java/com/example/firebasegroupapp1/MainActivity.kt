@@ -6,6 +6,14 @@ import android.util.Log
 import android.widget.Button
 
 import androidx.appcompat.app.AppCompatActivity
+<<<<<<< HEAD
+=======
+import com.example.firebasegroupapp1.DetailActivity
+import com.example.firebasegroupapp1.DishActivity
+import com.example.firebasegroupapp1.R
+//import com.example.firebasegroupapp1.SignUpActivity
+
+>>>>>>> abbdc4cc875f90b26f52e15fff937bc90e3d2542
 import com.example.firebasegroupapp1.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -22,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
