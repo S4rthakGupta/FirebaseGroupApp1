@@ -1,5 +1,6 @@
 package com.example.firebasegroupapp1
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -21,12 +22,31 @@ class ProductAdapter(options: FirebaseRecyclerOptions<Product>) :
     override fun onBindViewHolder(holder: ProductAdapter.MyViewHolder, position: Int, model: Product) {
         holder.productName.text = model.name;
         holder.productPrice.text = model.price.toString();
-        val theImage : String = model.photo;
+        val theImage: String = model.photo;
 
-        var storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(theImage)
-        Glide.with(holder.dishImg.context)
-            .load(storageReference)
-            .into(holder.dishImg)
+        if (model.photo.toString().startsWith("gs://")) {
+            var storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(theImage)
+            Glide.with(holder.itemView.context)
+                .load(storageReference)
+                .into(holder.dishImg)
+        }
+        else
+            Glide.with(holder.itemView.context)
+                .load(model.photo)
+                .into(holder.dishImg)
+
+        // Set the onClickListener to navigate to ProductDetailsActivity
+        holder.RecyclerView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, DetailActivity::class.java)
+
+            // Pass product details to the ProductDetailsActivity
+            intent.putExtra("productName", model.name)
+            intent.putExtra("productPrice", model.price)
+            intent.putExtra("productImage", model.photo)
+
+            context.startActivity(intent)
+        }
     }
     class MyViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.activity_product_list, parent, false)) {
