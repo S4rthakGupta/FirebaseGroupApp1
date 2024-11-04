@@ -310,7 +310,7 @@
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:paddingRight="5dp"
-                android:text="Price Details (1 item)"
+                android:text="Final Details"
                 android:textColor="#000000"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -435,13 +435,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:backgroundTint="@color/brown"
+            android:backgroundTint="#000000"
             android:fontFamily="sans-serif-medium"
             android:paddingLeft="5dp"
             android:paddingTop="5dp"
             android:paddingRight="5dp"
-            android:text="Purchase"
 
+            android:text="Purchase"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp" />
