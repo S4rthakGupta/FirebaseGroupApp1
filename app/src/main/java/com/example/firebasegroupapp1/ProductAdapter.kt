@@ -10,15 +10,15 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.storage.FirebaseStorage
 
-class DishAdapter(options: FirebaseRecyclerOptions<Dish>) :
-    FirebaseRecyclerAdapter<Dish, DishAdapter.MyViewHolder>(options) {
+class ProductAdapter(options: FirebaseRecyclerOptions<Product>) :
+    FirebaseRecyclerAdapter<Product, ProductAdapter.MyViewHolder>(options) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return MyViewHolder(inflater, parent)
     }
 
-    override fun onBindViewHolder(holder: DishAdapter.MyViewHolder, position: Int, model: Dish) {
+    override fun onBindViewHolder(holder: ProductAdapter.MyViewHolder, position: Int, model: Product) {
         holder.productName.text = model.name;
         holder.productPrice.text = model.price.toString();
         val theImage : String = model.photo;

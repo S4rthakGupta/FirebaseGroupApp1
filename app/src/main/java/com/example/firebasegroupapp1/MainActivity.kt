@@ -6,22 +6,14 @@ import android.util.Log
 import android.widget.Button
 
 import androidx.appcompat.app.AppCompatActivity
-<<<<<<< HEAD
-=======
-import com.example.firebasegroupapp1.DetailActivity
-import com.example.firebasegroupapp1.DishActivity
-import com.example.firebasegroupapp1.R
-//import com.example.firebasegroupapp1.SignUpActivity
 
->>>>>>> abbdc4cc875f90b26f52e15fff937bc90e3d2542
 import com.example.firebasegroupapp1.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.FirebaseDatabase
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -41,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signOut()
             val i = Intent(
                 this,
-                DishActivity::class.java
+                ProductActivity::class.java
             )
             this.startActivity(i)
         }

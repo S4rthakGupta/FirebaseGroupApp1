@@ -9,13 +9,13 @@ import com.example.firebasegroupapp1.databinding.ActivityDishBinding
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
 
-class DishActivity : AppCompatActivity() {
+class ProductActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityDishBinding
 
 
-    private var adapter: DishAdapter? = null
+    private var adapter: ProductAdapter? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +25,9 @@ class DishActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val query = FirebaseDatabase.getInstance().reference.child("Dish")
-        val options = FirebaseRecyclerOptions.Builder<Dish>().setQuery(query, Dish::class.java).build()
+        val options = FirebaseRecyclerOptions.Builder<Product>().setQuery(query, Product::class.java).build()
 
-        adapter = DishAdapter(options)
+        adapter = ProductAdapter(options)
 
         val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
