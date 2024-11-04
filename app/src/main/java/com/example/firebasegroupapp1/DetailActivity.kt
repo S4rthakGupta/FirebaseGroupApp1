@@ -34,13 +34,13 @@ class DetailActivity : AppCompatActivity() {
         val imgDish = findViewById<ImageView>(R.id.imgDish)
 
         if (DishImage != null) {
-            val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imgDish.toString())
-            storageReference.downloadUrl.addOnSuccessListener(OnSuccessListener<Uri> { uri ->
+            val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(DishImage.toString())
+             storageReference.downloadUrl.addOnSuccessListener(OnSuccessListener<Uri> { uri ->
                 Glide.with(this)
                     .load(uri)
                     .into(imgDish)
-            }).addOnFailureListener {
-            }
+             }).addOnFailureListener {
+             }
         }
 
         findViewById<Button>(R.id.btnBuyNow).setOnClickListener {
