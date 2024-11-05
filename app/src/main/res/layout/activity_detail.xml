@@ -1,55 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/background"
     android:padding="16dp">
 
-<ImageView
-    android:id="@+id/imgDish"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    android:contentDescription="Product Image"
-    android:layout_gravity="center" />
-
-    <TextView
-        android:id="@+id/txtDishName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Dish"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtPrice"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Price: "
-        android:textSize="20sp"/>
+        <ImageView
+            android:id="@+id/imgDish"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+        android:contentDescription="Product Image"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:layout_gravity="center" />
 
-    <TextView
-        android:id="@+id/txtDesc"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Description"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtDishName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dish"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
 
-    <TextView
-        android:id="@+id/txtDescDetails"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="This is a description of the product."
-        android:textSize="17sp"/>
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Price: "
+            android:textSize="20sp"
+            android:layout_marginTop="4dp" />
 
-<Button
-    android:id="@+id/btnBuyNow"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Buy Now"
-    android:backgroundTint="#F7360D"
-    android:layout_marginTop="16dp" />
+        <TextView
+            android:id="@+id/txtDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtDescDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is a description of the product."
+            android:textSize="17sp"
+            android:layout_marginTop="4dp" />
+
+        <Button
+            android:id="@+id/btnBuyNow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buy Now"
+            android:backgroundTint="#F7360D"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>
