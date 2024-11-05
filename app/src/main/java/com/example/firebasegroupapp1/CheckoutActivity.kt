@@ -35,7 +35,7 @@ class CheckoutActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnPayNow).setOnClickListener {
             if (validateFields()) {
-            val Intent = Intent(this@CheckoutActivity, ThankyouActivity::class.java)
+            val intent = Intent(this@CheckoutActivity, ThankyouActivity::class.java)
             startActivity(intent)
         }
         }
@@ -50,7 +50,9 @@ class CheckoutActivity : AppCompatActivity() {
         val firstNameField = findViewById<EditText>(R.id.editTextFirstName)
         val emailField = findViewById<EditText>(R.id.editTextEmail)
         val phoneField = findViewById<EditText>(R.id.editTextPhoneNo)
+        val streetNo = findViewById<EditText>(R.id.editTextStreetNo)
         val cityField = findViewById<EditText>(R.id.editTextCity)
+        val postalCode = findViewById<EditText>(R.id.editTextPostalCode)
         val cardNumberField = findViewById<EditText>(R.id.editTextCardNumber)
 
         return when {
@@ -66,8 +68,16 @@ class CheckoutActivity : AppCompatActivity() {
                 phoneField.error = "Invalid Phone Number"
                 false
             }
+            streetNo.text.isBlank() -> {
+                streetNo.error = "Street Number is required"
+                false
+            }
             cityField.text.isBlank() -> {
                 cityField.error = "City is required"
+                false
+            }
+            !isValidPostalCode(postalCode.text.toString()) -> {
+                postalCode.error = "Invalid Postal Code"
                 false
             }
             !isValidCardNumber(cardNumberField.text.toString()) -> {
@@ -78,14 +88,20 @@ class CheckoutActivity : AppCompatActivity() {
         }
     }
 
-    // Email validation helper
+    // Email validation
     private fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    // Phone validation helper
+    // Phone validation
     private fun isValidPhone(phone: String): Boolean {
         return !TextUtils.isEmpty(phone) && phone.length == 10 && Patterns.PHONE.matcher(phone).matches()
+    }
+
+    // Postal code validation Canadian format
+    private fun isValidPostalCode(postalCode: String): Boolean {
+        val canadianPostalCodePattern = "^[A-Za-z]\\d[A-Za-z] \\d[A-Za-z]\\d$"
+        return postalCode.matches(canadianPostalCodePattern.toRegex())
     }
 
     // Card number validation helper
