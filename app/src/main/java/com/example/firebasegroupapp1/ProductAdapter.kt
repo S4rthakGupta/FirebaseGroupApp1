@@ -47,6 +47,7 @@ class ProductAdapter(options: FirebaseRecyclerOptions<Product>) :
             intent.putExtra("DishName", model.name)
             intent.putExtra("Price", model.price.toString())
             intent.putExtra("DishImage", model.photo)
+            intent.putExtra("DishDesc", model.desc)
 
             context.startActivity(intent)
         }
