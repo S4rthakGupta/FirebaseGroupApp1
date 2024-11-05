@@ -29,6 +29,21 @@
         android:text="Price: "
         android:textSize="20sp"/>
 
+    <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Description"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtDescDetails"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text=""
+        android:textSize="20sp"/>
+
 <Button
     android:id="@+id/btnBuyNow"
     android:layout_width="match_parent"

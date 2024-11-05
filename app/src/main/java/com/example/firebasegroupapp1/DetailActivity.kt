@@ -28,9 +28,11 @@ class DetailActivity : AppCompatActivity() {
         val DishName = intent.getStringExtra("DishName")
         Price = intent.getStringExtra("Price")?.toDouble() ?: 0.0
         val DishImage = intent.getStringExtra("DishImage")
+        val Description = intent.getStringExtra("DishDesc")
 
         findViewById<TextView>(R.id.txtDishName).text = DishName
         findViewById<TextView>(R.id.txtPrice).text = "Price: $$Price"
+        findViewById<TextView>(R.id.txtDescDetails).text = Description
         val imgDish = findViewById<ImageView>(R.id.imgDish)
 
         if (DishImage != null) {
