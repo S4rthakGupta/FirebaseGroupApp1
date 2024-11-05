@@ -41,8 +41,8 @@
         android:id="@+id/txtDescDetails"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text=""
-        android:textSize="20sp"/>
+        android:text="This is a description of the product."
+        android:textSize="17sp"/>
 
 <Button
     android:id="@+id/btnBuyNow"
