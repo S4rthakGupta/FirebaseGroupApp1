@@ -12,12 +12,17 @@ import com.bumptech.glide.Glide
 import com.example.firebasegroupapp1.databinding.ActivityDetailBinding
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.storage.FirebaseStorage
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityDetailBinding
     private var Price :Double = 0.0
+    private var quantity = 1
+    private lateinit var uid: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +42,46 @@ class DetailActivity : AppCompatActivity() {
 
         if (DishImage != null) {
             val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(DishImage.toString())
-             storageReference.downloadUrl.addOnSuccessListener(OnSuccessListener<Uri> { uri ->
+            storageReference.downloadUrl.addOnSuccessListener(OnSuccessListener<Uri> { uri ->
                 Glide.with(this)
                     .load(uri)
                     .into(imgDish)
-             }).addOnFailureListener {
-             }
+            }).addOnFailureListener {
+            }
+        }
+//        val currentUser = FirebaseAuth.getInstance().currentUser
+//        if (currentUser != null) {
+//            uid = currentUser.uid
+//            Toast.makeText(this, "User is signed in: $uid", Toast.LENGTH_SHORT).show()
+//        } else {
+//            Toast.makeText(this, "No user is signed in!", Toast.LENGTH_SHORT).show()
+//            // Redirect to Sign-In or Sign-Up screen
+//            // startActivity(Intent(this, MainActivity::class.java))
+//            // finish()
+//        }
+
+        uid = FirebaseAuth.getInstance().currentUser?.uid ?: "UnknownUser"
+
+        val btnMinus = findViewById<Button>(R.id.btnMinus)
+        val btnPlus = findViewById<Button>(R.id.btnPlus)
+        val txtQuantity = findViewById<TextView>(R.id.txtQuantity)
+
+        btnMinus.setOnClickListener {
+            if (quantity > 1) {
+                quantity--
+                txtQuantity.text = quantity.toString()
+            }
+        }
+
+        btnPlus.setOnClickListener {
+            quantity++
+            txtQuantity.text = quantity.toString()
+        }
+
+        // Add to Cart
+        val btnAddToCart = findViewById<Button>(R.id.btnAddToCart)
+        btnAddToCart.setOnClickListener {
+            addToCart(DishName ?: "Unknown Dish", Price, quantity)
         }
 
         findViewById<Button>(R.id.btnBuyNow).setOnClickListener {
@@ -53,7 +92,23 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(this).load(DishImage).into(imageView)
 
     }
-
+    private fun addToCart(dishName: String, price: Double, quantity: Int) {
+        val database = FirebaseDatabase.getInstance().reference
+        val cartItem = mapOf(
+            "dishName" to dishName,
+            "price" to price,
+            "quantity" to quantity,
+            "totalPrice" to price * quantity
+        )
+        database.child("users").child(uid).child("cart").push()
+            .setValue(cartItem)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Added to Cart!", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Failed to add to cart. Error: ${it.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
     private fun BuyNow(){
         val intent = Intent(this@DetailActivity, CheckoutActivity::class.java)
         intent.putExtra("Price", Price)
