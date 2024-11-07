@@ -7,9 +7,13 @@ import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.firebasegroupapp1.databinding.ActivityCheckoutBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class CheckoutActivity : AppCompatActivity() {
 
@@ -18,6 +22,8 @@ class CheckoutActivity : AppCompatActivity() {
     private var Price : Double = 0.0
     private var tax : Double = 0.0
     private var totalPrice : Double = 0.0
+    private lateinit var database: DatabaseReference
+    private val uid: String = FirebaseAuth.getInstance().currentUser?.uid ?: "DefaultUser"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,20 +31,34 @@ class CheckoutActivity : AppCompatActivity() {
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        database = FirebaseDatabase.getInstance().reference.child("users").child(uid).child("cart")
+
         Price = intent.getDoubleExtra("Price", 0.0)
         tax = calculateTax(Price.toDouble())
         totalPrice = Price + tax
 
-        findViewById<TextView>(R.id.txtTotalPrice).text = "Total Price: $${Price}"
-        findViewById<TextView>(R.id.txtTax).text = "Tax (13%): $${tax}"
-        findViewById<TextView>(R.id.txtTotalAmt).text = "Total Amount: $${totalPrice}"
+        findViewById<TextView>(R.id.txtTotalPrice).text = "Total Price: $${"%.2f".format(Price)}"
+        findViewById<TextView>(R.id.txtTax).text = "Tax (13%): $${"%.2f".format(tax)}"
+        findViewById<TextView>(R.id.txtTotalAmt).text = "Total Amount: $${"%.2f".format(totalPrice)}"
 
         findViewById<Button>(R.id.btnPayNow).setOnClickListener {
             if (validateFields()) {
-            val intent = Intent(this@CheckoutActivity, ThankyouActivity::class.java)
-            startActivity(intent)
+                clearCartAndProceed()
+            }
         }
-        }
+    }
+
+    private fun clearCartAndProceed() {
+        database.removeValue()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Payment successful!!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@CheckoutActivity, ThankyouActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Failed to clear cart: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     fun calculateTax(price: Double): Double {

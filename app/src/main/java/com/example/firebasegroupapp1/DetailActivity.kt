@@ -55,6 +55,9 @@ class DetailActivity : AppCompatActivity() {
         val btnMinus = findViewById<Button>(R.id.btnMinus)
         val btnPlus = findViewById<Button>(R.id.btnPlus)
         val txtQuantity = findViewById<TextView>(R.id.txtQuantity)
+        val btnAddToCart = findViewById<Button>(R.id.btnAddToCart)
+        val btnViewCart = findViewById<Button>(R.id.btnViewCart)
+        val btnBuyNow = findViewById<Button>(R.id.btnBuyNow)
 
         btnMinus.setOnClickListener {
             if (quantity > 1) {
@@ -68,13 +71,15 @@ class DetailActivity : AppCompatActivity() {
             txtQuantity.text = quantity.toString()
         }
 
-        // Add to Cart
-        val btnAddToCart = findViewById<Button>(R.id.btnAddToCart)
         btnAddToCart.setOnClickListener {
-            addToCart(DishName ?: "Unknown Dish", Price, quantity)
+            addToCart(DishName ?: "Dish", Price, quantity)
         }
 
-        findViewById<Button>(R.id.btnBuyNow).setOnClickListener {
+        btnViewCart.setOnClickListener {
+            ViewCart()
+        }
+
+        btnBuyNow.setOnClickListener {
             BuyNow()
         }
 
@@ -99,9 +104,15 @@ class DetailActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to add to cart. Error: ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
+    private fun ViewCart(){
+        val intent = Intent(this@DetailActivity, CartActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun BuyNow(){
         val intent = Intent(this@DetailActivity, CheckoutActivity::class.java)
-        intent.putExtra("Price", Price)
+        intent.putExtra("Price", Price * quantity)
         startActivity(intent)
     }
 }
