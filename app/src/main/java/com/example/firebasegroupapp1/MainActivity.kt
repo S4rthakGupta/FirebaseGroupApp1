@@ -41,10 +41,8 @@ class MainActivity : AppCompatActivity() {
         if (auth.currentUser == null)
         {
             createSignInIntent()
-            Toast.makeText(this, "RIGHT AFTER createSignInIntent!!!", Toast.LENGTH_SHORT).show()
         } else {
             Log.d("Current User", "User Email: ${auth.currentUser?.email}")
-            Toast.makeText(this, "ELSE PART - RIGHT AFTER createSignInIntent!!!", Toast.LENGTH_SHORT).show()
 
         }
     }
@@ -54,10 +52,9 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         var currentUser = auth.currentUser
         if (currentUser != null) {
-            Toast.makeText(this, "NO USER NOT NULL - ON START", Toast.LENGTH_SHORT).show()
         }
         else {
-            Toast.makeText(this, "NO USER LOGGED - ON START", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "NO USER LOGGED IN - ON START", Toast.LENGTH_SHORT).show()
         }
     }
 
