@@ -3,39 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fitsSystemWindows="true"
-    android:padding="8dp"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="2dp"
     tools:context=".CartItemActivity">
 
     <TextView
         android:id="@+id/txtDishName"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Dish Name"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/txtQuantity"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:text="Qty: 1"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/txtPrice"
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:text="$10.0"
-        android:textSize="16sp" />
+        android:text="Price: $10.0"
+        android:textSize="16sp"
+        android:gravity="center" />
 
     <Button
         android:id="@+id/btnRemove"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#F7360D"
-        android:text="-"
+        android:text="Del"
         android:textColor="@android:color/white"
-        android:textSize="20dp" />
+        android:textSize="14dp" />
 </LinearLayout>
