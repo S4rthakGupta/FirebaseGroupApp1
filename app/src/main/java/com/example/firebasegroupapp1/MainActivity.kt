@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         var currentUser = auth.currentUser
         if (currentUser != null) {
             Toast.makeText(this, "NO USER NOT NULL - ON START", Toast.LENGTH_SHORT).show()
-            FirebaseAuth.getInstance().signOut()
         }
         else {
             Toast.makeText(this, "NO USER LOGGED - ON START", Toast.LENGTH_SHORT).show()
