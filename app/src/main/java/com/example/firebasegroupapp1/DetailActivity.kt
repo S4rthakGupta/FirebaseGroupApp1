@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class DetailActivity : AppCompatActivity() {
 
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityDetailBinding
     private var Price :Double = 0.0

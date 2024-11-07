@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 
@@ -30,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         val btnNext: Button = findViewById(R.id.splashBtn)
         btnNext.setOnClickListener {
 
-          FirebaseAuth.getInstance().signOut()
             val i = Intent(
                 this,
                 ProductActivity::class.java
@@ -41,8 +41,10 @@ class MainActivity : AppCompatActivity() {
         if (auth.currentUser == null)
         {
             createSignInIntent()
+            Toast.makeText(this, "RIGHT AFTER createSignInIntent!!!", Toast.LENGTH_SHORT).show()
         } else {
             Log.d("Current User", "User Email: ${auth.currentUser?.email}")
+            Toast.makeText(this, "ELSE PART - RIGHT AFTER createSignInIntent!!!", Toast.LENGTH_SHORT).show()
 
         }
     }
@@ -51,13 +53,19 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         var currentUser = auth.currentUser
+        if (currentUser != null) {
+            Toast.makeText(this, "NO USER NOT NULL - ON START", Toast.LENGTH_SHORT).show()
+            FirebaseAuth.getInstance().signOut()
+        }
+        else {
+            Toast.makeText(this, "NO USER LOGGED - ON START", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         if
                 (result.resultCode == RESULT_OK) {
-            val user =
-                FirebaseAuth.getInstance().currentUser
+            val user = FirebaseAuth.getInstance().currentUser
 
         } else {
             createSignInIntent()
