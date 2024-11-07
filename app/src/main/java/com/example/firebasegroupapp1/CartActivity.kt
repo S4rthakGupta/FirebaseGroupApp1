@@ -2,6 +2,8 @@ package com.example.firebasegroupapp1
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -26,6 +28,17 @@ class CartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
+
+
+        // Set up the Toolbar
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.navibar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable back button
+
+        // Handle Back button click
+        toolbar.setNavigationOnClickListener {
+            finish() // Go back to the previous activity
+        }
 
         database = FirebaseDatabase.getInstance().reference.child("users").child(uid).child("cart")
 
@@ -69,5 +82,34 @@ class CartActivity : AppCompatActivity() {
                 Toast.makeText(this@CartActivity, "Failed to load cart items.", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    // Stop Firebase listeners when activity is not visible
+    override fun onStop() {
+        super.onStop()
+        recyclerView.adapter = null // Clear the adapter to release resources
+    }
+
+    // Inflate the menu (optional)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.product_menu, menu) // Use the same menu as ProductActivity
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+            R.id.action_sign_out -> {
+                FirebaseAuth.getInstance().signOut()
+                Toast.makeText(this, "Signed out successfully", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

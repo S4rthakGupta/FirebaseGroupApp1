@@ -3,6 +3,8 @@ package com.example.firebasegroupapp1
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -30,6 +32,17 @@ class DetailActivity : AppCompatActivity() {
 
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        // Set up the toolbar with the new ID
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.navibar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable back button
+
+        // Handle Back button click
+        toolbar.setNavigationOnClickListener {
+            finish() // Close the current activity and return to the previous one
+        }
 
         val DishName = intent.getStringExtra("DishName")
         Price = intent.getStringExtra("Price")?.toDouble() ?: 0.0
@@ -114,5 +127,31 @@ class DetailActivity : AppCompatActivity() {
         val intent = Intent(this@DetailActivity, CheckoutActivity::class.java)
         intent.putExtra("Price", Price * quantity)
         startActivity(intent)
+    }
+
+    // Inflate the menu (Sign-Out Button)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.product_menu, menu)
+        return true
+    }
+
+    // Handle menu item clicks
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Handle back button
+                finish()
+                return true
+            }
+            R.id.action_sign_out -> {
+                // Handle sign-out
+                FirebaseAuth.getInstance().signOut()
+                Toast.makeText(this, "Signed out successfully", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -30,13 +30,10 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val btnNext: Button = findViewById(R.id.splashBtn)
         btnNext.setOnClickListener {
-
-            val i = Intent(
-                this,
-                ProductActivity::class.java
-            )
-            this.startActivity(i)
+            val i = Intent(this, ProductActivity::class.java)
+            startActivity(i)
         }
+
 
         if (auth.currentUser == null)
         {

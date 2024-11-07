@@ -1,6 +1,9 @@
 package com.example.firebasegroupapp1
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
@@ -14,10 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 class ProductActivity : AppCompatActivity() {
 
     val user = FirebaseAuth.getInstance().currentUser
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityProductBinding
-
-
     private var adapter: ProductAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,27 +26,59 @@ class ProductActivity : AppCompatActivity() {
         binding = ActivityProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Set up the toolbar with the new ID
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.navibar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable back button
+
+        // Firebase query setup
         val query = FirebaseDatabase.getInstance().reference.child("Dish")
-        val options = FirebaseRecyclerOptions.Builder<Product>().setQuery(query, Product::class.java).build()
+        val options = FirebaseRecyclerOptions.Builder<Product>()
+            .setQuery(query, Product::class.java)
+            .build()
 
         adapter = ProductAdapter(options)
         Toast.makeText(this, user?.uid ?: "User not logged in", Toast.LENGTH_SHORT).show()
 
-        val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
+        // RecyclerView setup
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-
-
-
     }
-    override fun onStart()
-    {
+
+    override fun onStart() {
         super.onStart()
         adapter?.startListening()
     }
 
+    override fun onStop() {
+        super.onStop()
+        adapter?.stopListening()
+    }
 
+    // Inflate the menu (Sign Out button)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.product_menu, menu)
+        return true
+    }
 
-
-
+    // Handle menu item clicks
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Handle back button
+                finish()
+                return true
+            }
+            R.id.action_sign_out -> {
+                // Handle sign-out
+                FirebaseAuth.getInstance().signOut()
+                Toast.makeText(this, "Signed out successfully", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
