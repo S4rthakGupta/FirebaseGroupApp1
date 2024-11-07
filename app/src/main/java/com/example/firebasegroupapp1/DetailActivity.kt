@@ -49,18 +49,7 @@ class DetailActivity : AppCompatActivity() {
             }).addOnFailureListener {
             }
         }
-//        val currentUser = FirebaseAuth.getInstance().currentUser
-//        if (currentUser != null) {
-//            uid = currentUser.uid
-//            Toast.makeText(this, "User is signed in: $uid", Toast.LENGTH_SHORT).show()
-//        } else {
-//            Toast.makeText(this, "No user is signed in!", Toast.LENGTH_SHORT).show()
-//            // Redirect to Sign-In or Sign-Up screen
-//            // startActivity(Intent(this, MainActivity::class.java))
-//            // finish()
-//        }
-
-        uid = FirebaseAuth.getInstance().currentUser?.uid ?: "UnknownUser"
+        uid = FirebaseAuth.getInstance().currentUser?.uid ?: "DefaultUser"
 
         val btnMinus = findViewById<Button>(R.id.btnMinus)
         val btnPlus = findViewById<Button>(R.id.btnPlus)
