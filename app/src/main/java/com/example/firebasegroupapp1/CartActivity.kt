@@ -84,11 +84,18 @@ class CartActivity : AppCompatActivity() {
         })
     }
 
-    // Stop Firebase listeners when activity is not visible
-    override fun onStop() {
-        super.onStop()
-        recyclerView.adapter = null // Clear the adapter to release resources
+
+    override fun onResume() {
+        super.onResume()
+        // Reload cart items when the activity resumes
+        loadCartItems()
     }
+
+//    // Stop Firebase listeners when activity is not visible
+//    override fun onStop() {
+//        super.onStop()
+//        recyclerView.adapter = null // Clear the adapter to release resources
+//    }
 
     // Inflate the menu (optional)
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

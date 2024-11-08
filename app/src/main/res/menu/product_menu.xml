@@ -8,5 +8,6 @@
         android:id="@+id/action_sign_out"
         android:title="Sign Out"
         android:icon="@drawable/logout"
+        android:iconTint="#FFFFFF"
         app:showAsAction="ifRoom" />
 </menu>

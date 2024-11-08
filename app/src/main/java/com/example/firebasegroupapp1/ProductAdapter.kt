@@ -37,8 +37,6 @@ class ProductAdapter(options: FirebaseRecyclerOptions<Product>) :
                 .load(model.photo)
                 .into(holder.dishImg)
 
-
-
         // Set the onClickListener to navigate to DetailsActivity
         holder.cardV.setOnClickListener {
             val context = holder.itemView.context

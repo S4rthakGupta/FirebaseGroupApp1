@@ -11,7 +11,7 @@
         android:id="@+id/navibar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="#F7360D"
         android:elevation="4dp"
         app:title="Dish Details"
         app:titleTextColor="@android:color/white" />

@@ -19,6 +19,7 @@ class ProductActivity : AppCompatActivity() {
     val user = FirebaseAuth.getInstance().currentUser
     private lateinit var binding: ActivityProductBinding
     private var adapter: ProductAdapter? = null
+    private var recyclerView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,21 +39,29 @@ class ProductActivity : AppCompatActivity() {
             .build()
 
         adapter = ProductAdapter(options)
-        Toast.makeText(this, user?.uid ?: "User not logged in", Toast.LENGTH_SHORT).show()
+        // Toast.makeText(this, user?.uid ?: "User not logged in", Toast.LENGTH_SHORT).show()
 
         // RecyclerView setup
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
     }
-
+    // onStart method should be outside onCreate
     override fun onStart() {
         super.onStart()
         adapter?.startListening()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter?.startListening()
+        adapter?.notifyDataSetChanged()
     }
 
     override fun onStop() {
         super.onStop()
+        recyclerView?.adapter = null
         adapter?.stopListening()
     }
 

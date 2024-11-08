@@ -5,6 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background">
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/navibar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#F7360D"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Checkout Page"
+        app:titleTextColor="@android:color/white" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -12,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/navibar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,18 +32,6 @@
             android:backgroundTint="#80D8C7C7"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <!-- Title -->
-            <TextView
-                android:id="@+id/txtCheckout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Checkout Page"
-                android:textAlignment="center"
-                android:textSize="25sp" />
 
             <!-- User Information Section -->
             <TextView
@@ -188,10 +188,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="#8B4513"
+                android:backgroundTint="#F7360D"
                 android:text="Pay Now"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
