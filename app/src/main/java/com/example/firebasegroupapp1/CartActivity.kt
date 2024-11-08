@@ -29,6 +29,7 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
+        
 
         // Set up the Toolbar
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.navibar)
