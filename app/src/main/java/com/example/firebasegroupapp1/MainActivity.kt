@@ -45,12 +45,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//    override fun onStart() {
-//        super.onStart()
-//        var currentUser = auth.currentUser
-//
-//    }
-
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         if
                 (result.resultCode == RESULT_OK) {
