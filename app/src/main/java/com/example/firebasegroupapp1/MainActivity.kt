@@ -45,15 +45,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-        var currentUser = auth.currentUser
-        if (currentUser != null) {
-        }
-        else {
-            Toast.makeText(this, "NO USER LOGGED IN - ON START", Toast.LENGTH_SHORT).show()
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        var currentUser = auth.currentUser
+//
+//    }
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         if
