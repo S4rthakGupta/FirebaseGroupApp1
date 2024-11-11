@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createSignInIntent() {
         val providers = arrayListOf(
+//            Email Login only being used
             AuthUI.IdpConfig.EmailBuilder().build()
         )
         val signInIntent =
